@@ -26,12 +26,12 @@ namespace PruebaDesempenoApi.Config
                 return builder.ToString();
             }
         }
-        public string GenerateJwtToken(User user)
+        public string GenerateJwtToken(Employee employee)
         {
             var claims = new[]
             {
-            new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
-            new Claim(ClaimTypes.Email,user.Email),
+            new Claim(ClaimTypes.NameIdentifier,employee.Id.ToString()),
+            new Claim(ClaimTypes.Email,employee.Email),
         };
 
             var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
