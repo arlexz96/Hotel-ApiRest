@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PruebaDesempenoApi.Config;
 using PruebaDesempenoApi.Data;
+using PruebaDesempenoApi.Repositories;
+using PruebaDesempenoApi.Services;
 
 Env.Load();
 
@@ -22,6 +24,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.Parse("8.0.20-mysql")));
+
+builder.Services.AddSingleton<Utilities>();
+builder.Services.AddScoped<IAuthRepository, AuthServices>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeServices>();
 
 builder.Services.AddSingleton<Utilities>();
 builder.Services.AddAuthentication(config =>

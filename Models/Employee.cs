@@ -15,18 +15,27 @@ namespace PruebaDesempenoApi.Models
         public int Id { get; set; }
         [Column("first_name")]
         [StringLength(255)]
-        public required string FirstName { get; set; }
+        public string FirstName { get; set; }
         [Column("last_name")]
         [StringLength(255)]
-        public required string LastName { get; set; }
+        public string LastName { get; set; }
         [Column("email")]
         [StringLength(255)]
-        public required string Email { get; set; }
+        public string Email { get; set; }
         [Column("identification_number")]
         [StringLength(20)]
-        public required string IdentificationNumber { get; set; }
+        public string IdentificationNumber { get; set; }
         [Column("password")]
         [StringLength(255)]
-        public required string Password { get; set; }
+        public string Password { get; set; }
+
+        public Employee(string firstName, string lastName, string email, string identificationNumber ,string password)
+        {
+            FirstName = firstName.ToLower().Trim();
+            LastName = lastName.ToLower().Trim();
+            Email = email.ToLower().Trim();
+            IdentificationNumber = identificationNumber;
+            Password = password;
+        }
     }
 }
