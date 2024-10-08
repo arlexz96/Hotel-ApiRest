@@ -12,23 +12,24 @@ namespace PruebaDesempenoApi.Models
     {
         [Key]
         [Column("id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Column("first_name")]
         [StringLength(255)]
-        public required string FirstName { get; set; }
+        public string FirstName { get; set; }
         [Column("last_name")]
         [StringLength(255)]
-        public required string LastName { get; set; }
+        public string LastName { get; set; }
         [Column("email")]
         [StringLength(255)]
-        public required string Email { get; set; }
+        public string Email { get; set; }
         [Column("identification_number")]
         [StringLength(20)]
-        public required string IdentificationNumber { get; set; }
+        public string IdentificationNumber { get; set; }
         [Column("phone_number")]
         [StringLength(20)]
-        public required string PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         [Column("birthdate")]
-        public DateOnly? Birthdate{ get; set; }
+        public DateOnly Birthdate{ get; set; }
     }
 }

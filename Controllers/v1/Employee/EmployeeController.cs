@@ -10,7 +10,7 @@ using PruebaDesempenoApi.Repositories;
 
 namespace PruebaDesempenoApi.Controllers.v1
 {
-    [ApiController]
+    [Tags("employee")]
     [Route("api/v1/employee")]
     public class EmployeeController(IEmployeeRepository employeeRepository, Utilities utilities) : Controller
     {

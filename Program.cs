@@ -28,6 +28,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddSingleton<Utilities>();
 builder.Services.AddScoped<IAuthRepository, AuthServices>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeServices>();
+builder.Services.AddScoped<IRoomRepository, RoomServices>();
+builder.Services.AddScoped<IRoomTypeRepository, RoomTypeServices>();
+
+builder.Services.AddScoped<IBookRepository, BookServices>();
+
 
 builder.Services.AddSingleton<Utilities>();
 builder.Services.AddAuthentication(config =>
