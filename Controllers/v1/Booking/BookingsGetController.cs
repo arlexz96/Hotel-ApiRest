@@ -10,17 +10,38 @@ using PruebaDesempenoApi.Repositories;
 namespace PruebaDesempenoApi.Controllers.v1.Booking
 {
     [Tags("booking")]
+    [Route("api/v1/bookings")]
     public class BookingsGetController : BookingsController
     {
         public BookingsGetController(IBookRepository bookRepository, Utilities utilities) : base(bookRepository, utilities)
         {
         }
         [HttpGet("search/{IdentificationNumber}")]
-        [Authorize]
+/*         [Authorize] */
         public async Task<IActionResult> GetBookingByIdentification(string IdentificationNumber)
         {
-            var Reservations = _bookRepository.GetBookingByIdentification(IdentificationNumber);
-            return Ok(Reservations);
+            var Reservations = await _bookRepository.GetBookingByIdentification(IdentificationNumber);
+            var Data = Reservations.Select(d => new {
+                id = d.Id,
+                StartDate = d.StartDate,
+                roomName = d.Room.RoomType.Name,
+                roomDescription = d.Room.RoomType.Description,
+                Guest = $"{d.Guest.FirstName} {d.Guest.LastName}",
+                GuestEmail = d.Guest.Email,
+                GuestPhoneNumber = d.Guest.PhoneNumber,
+                Employee = $"{d.Employee.FirstName} {d.Employee.LastName}"
+            });
+            return Ok(Data);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBookingById(int id)
+        {
+            var Booking = await _bookRepository.GetBookingById(id);
+            if (Booking == null)
+            {
+                return NotFound("Booking not found");
+            }
+            return Ok(Booking);
         }
     }
 }

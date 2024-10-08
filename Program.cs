@@ -30,6 +30,7 @@ builder.Services.AddScoped<IAuthRepository, AuthServices>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeServices>();
 builder.Services.AddScoped<IRoomRepository, RoomServices>();
 builder.Services.AddScoped<IRoomTypeRepository, RoomTypeServices>();
+builder.Services.AddScoped<IGuestRepository, GuestServices>();
 
 builder.Services.AddScoped<IBookRepository, BookServices>();
 

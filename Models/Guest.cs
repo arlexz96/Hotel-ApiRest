@@ -30,6 +30,17 @@ namespace PruebaDesempenoApi.Models
         [StringLength(20)]
         public string PhoneNumber { get; set; }
         [Column("birthdate")]
-        public DateOnly Birthdate{ get; set; }
+        public DateOnly Birthdate { get; set; }
+
+        public Guest(string firstName, string lastName, string email, string identificationNumber, string phoneNumber, DateOnly birthdate)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            IdentificationNumber = identificationNumber;
+            PhoneNumber = phoneNumber;
+            Birthdate = birthdate;
+        }
+        public Guest(){}
     }
 }

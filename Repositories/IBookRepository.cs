@@ -11,5 +11,6 @@ namespace PruebaDesempenoApi.Repositories
         public Task<ICollection<Booking>> GetBookingByIdentification(string NumberId);
         public Task DeleteBookingById(int id);
         public Task<bool> CheckExistence(int id);
+        public Task<Booking> GetBookingById(int id);
     }
 }

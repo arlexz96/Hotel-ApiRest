@@ -18,7 +18,11 @@ namespace PruebaDesempenoApi.Services
         }
         public async Task<ICollection<Booking>> GetBookingByIdentification(string NumberId)
         {
-            var Reservations = await _appDbContext.Bookings.Include(p => p.Guest).Where(b => b.Guest.IdentificationNumber == NumberId).ToListAsync();
+            var Reservations = await _appDbContext.Bookings.Include(p => p.Guest)
+                                                            .Include(r => r.Room)
+                                                            .Include(r2 => r2.Room.RoomType)
+                                                            .Include(e => e.Employee)
+                                                            .Where(b => b.Guest.IdentificationNumber == NumberId).ToListAsync();
             return Reservations;
         }
         public async Task DeleteBookingById(int id)
@@ -29,6 +33,10 @@ namespace PruebaDesempenoApi.Services
                 _appDbContext.Bookings.Remove(booking);
                 await _appDbContext.SaveChangesAsync();
             }
+        }
+        public async Task<Booking> GetBookingById(int id)
+        {
+            return await _appDbContext.Bookings.FindAsync(id);
         }
         public async Task<bool> CheckExistence(int id)
         {
